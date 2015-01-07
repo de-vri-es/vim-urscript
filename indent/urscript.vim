@@ -18,11 +18,23 @@ let s:keepcpo= &cpo
 set cpo&vim
 
 function GetURScriptIndent(lnum)
-	" Search backwards for the previous non-empty line.
-	let prev_lnum   = prevnonblank(a:lnum - 1)
-	let prev_line   = getline(v:prev_lnum)
-	let prev_indent = indent(v:prev_lnum)
+	" Search backwards for the previous non-empty line that is not a program label.
+	let prev_lnum = a:lnum
+	while prev_lnum >= a:lnum - 50 && prev_lnum >= 0
+		let prev_lnum = prevnonblank(prev_lnum - 1)
+		let prev_line = getline(prev_lnum)
+		if prev_line !~ '^\$'
+			break
+		endif
+	endwhile
+
+	let prev_indent = indent(prev_lnum)
 	let line        = getline(a:lnum)
+
+	" Program labels may not be indented.
+	if line =~ '^\s*\$'
+		return 0
+	endif
 
 	" If this is the first line, use 0 indent.
 	if prev_lnum == 0

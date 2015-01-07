@@ -18,8 +18,8 @@ syn keyword urscriptKeywords thread run join kill return
 syn keyword urscriptKeywords while if else elif end
 syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 
-" Blocks.
-syn region  urscriptBlock start="^\s*\(\(def\|thread\|while\|if\|elif\).\+:\|elif\s*:\)\s*$" end="end" fold contains=TOP
+" Operators
+syn keyword urscriptOperators or and xor not
 
 " Program labels.
 syn region urscriptLabelText      start="\"" skip="\\" end="\""  contained
@@ -56,6 +56,7 @@ syn match urscriptSemicolonError ";\s*$"
 " Link urscript groups to default groups.
 hi def link urscriptComments    Comment
 hi def link urscriptKeywords    Keyword
+hi def link urscriptOperators   Operator
 hi def link urscriptIdentifier  Identifier
 
 hi def link urscriptLabelText   String

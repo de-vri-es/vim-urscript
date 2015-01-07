@@ -27,6 +27,9 @@ syn match  urscriptLabelError      "^\s\+[$]" nextgroup=urscriptLabelNumber skip
 " Strings.
 syn region  urscriptString start="\"" skip="\\" end="\""
 
+" Literal boolean values.
+syn keyword urscriptBool True False
+
 " Integer with - + or nothing in front.
 syn match urscriptNumber '\d\+'
 syn match urscriptNumber '[-+]\d\+'
@@ -54,6 +57,7 @@ hi def link urscriptLabel       PreProc
 hi def link urscriptLabelError  Error
 
 hi def link urscriptString      String
+hi def link urscriptBool        Constant
 hi def link urscriptNumber      Number
 
 let b:current_syntax = "urscript"

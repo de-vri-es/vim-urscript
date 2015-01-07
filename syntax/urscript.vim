@@ -11,7 +11,7 @@ endif
 syn match urscriptComments "^\s*#.*"
 
 " Identifiers.
-syn match urscriptIdentifier "\<\a\+\>" contained
+syn match urscriptIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
 
 " Keywords.
 syn keyword urscriptKeywords thread run join kill

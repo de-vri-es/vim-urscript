@@ -19,7 +19,10 @@ set cpo&vim
 
 function GetURScriptIndent(lnum)
 	" Search backwards for the previous non-empty line.
-	let prev_lnum = prevnonblank(a:lnum - 1)
+	let prev_lnum   = prevnonblank(a:lnum - 1)
+	let prev_line   = getline(v:prev_lnum)
+	let prev_indent = indent(v:prev_lnum)
+	let line        = getline(a:lnum)
 
 	" If this is the first line, use 0 indent.
 	if prev_lnum == 0
@@ -30,16 +33,16 @@ function GetURScriptIndent(lnum)
 	let add_indent = 0
 
 	" Indent after lines ending in colon.
-	if getline(prev_lnum) =~ ':\s*$'
+	if prev_line =~ ':\s*$'
 		let add_indent = add_indent + shiftwidth()
 	endif
 
 	" Unindent elif/else/end.
-	if getline(a:lnum) =~ '^\s*\(elif\|else\|end\)\>'
+	if line =~ '^\s*\(elif\|else\|end\)\>'
 		let add_indent = add_indent - shiftwidth()
 	endif
 
-	return indent(prev_lnum) + add_indent
+	return prev_indent + add_indent
 endfunction
 
 let &cpo = s:keepcpo

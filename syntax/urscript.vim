@@ -14,7 +14,7 @@ syn match urscriptComments "^\s*#.*"
 syn match urscriptIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
 
 " Keywords.
-syn keyword urscriptKeywords thread run join kill
+syn keyword urscriptKeywords thread run join kill return
 syn keyword urscriptKeywords while if else elif end
 syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 

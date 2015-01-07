@@ -49,6 +49,9 @@ syn match urscriptNumber '\d[[:digit:]]*[eE][\-+]\=\d\+'
 syn match urscriptNumber '[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
 syn match urscriptNumber '\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
 
+" Erronous semicolon at the end of a line.
+syn match urscriptSemicolonError ";\s*$"
+
 
 " Link urscript groups to default groups.
 hi def link urscriptComments    Comment
@@ -63,5 +66,7 @@ hi def link urscriptLabelError  Error
 hi def link urscriptString      String
 hi def link urscriptBool        Constant
 hi def link urscriptNumber      Number
+
+hi def link urscriptSemicolonError Error
 
 let b:current_syntax = "urscript"

@@ -19,9 +19,10 @@ syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 syn region  urscriptBlock start="^\s*\(\(def\|thread\|while\|if\|elif\).\+:\|elif\s*:\)\s*$" end="end" fold
 
 " Program labels.
-syn match urscriptLabelText   ".*"   contained
-syn match urscriptLabelNumber "\d\+" nextgroup=urscriptLabelText   skipwhite contained
-syn match urscriptLabel       "^[$]" nextgroup=urscriptLabelNumber skipwhite
+syn region urscriptLabelText      start="\"" skip="\\" end="\""  contained
+syn match  urscriptLabelNumber     "\d\+"     contained nextgroup=urscriptLabelText skipwhite
+syn match  urscriptLabel           "^[$]"     nextgroup=urscriptLabelNumber skipwhite
+syn match  urscriptLabelError      "^\s\+[$]" nextgroup=urscriptLabelNumber skipwhite
 
 " Strings.
 syn region  urscriptString start="\"" skip="\\" end="\""
@@ -50,6 +51,7 @@ hi def link urscriptIdentifier  Identifier
 hi def link urscriptLabelText   String
 hi def link urscriptLabelNumber PreProc
 hi def link urscriptLabel       PreProc
+hi def link urscriptLabelError  Error
 
 hi def link urscriptString      String
 hi def link urscriptNumber      Number

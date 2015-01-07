@@ -8,9 +8,9 @@ let b:did_indent = 1
 
 setlocal nolisp
 setlocal indentexpr=GetURScriptIndent(v:lnum)
-setlocal indentkeys=:,o,O,=else,=elif,=end
+setlocal indentkeys=:0$,o,O,=else,=elif,=end
 
-if exists("+GetURScriptIndent")
+if exists("*GetURScriptIndent")
 	finish
 endif
 

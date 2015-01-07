@@ -52,7 +52,7 @@ hi def link urscriptKeywords    Statement
 hi def link urscriptIdentifier  Identifier
 
 hi def link urscriptLabelText   String
-hi def link urscriptLabelNumber PreProc
+hi def link urscriptLabelNumber Number
 hi def link urscriptLabel       PreProc
 hi def link urscriptLabelError  Error
 

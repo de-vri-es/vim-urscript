@@ -7,6 +7,9 @@ if exists("b:current_syntax")
   finish
 endif
 
+" Comment
+syn match urscriptComments "^\s*#.*"
+
 " Identifiers.
 syn match urscriptIdentifier "\<\a\+\>" contained
 
@@ -48,7 +51,8 @@ syn match urscriptNumber '\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
 
 
 " Link urscript groups to default groups.
-hi def link urscriptKeywords    Statement
+hi def link urscriptComments    Comment
+hi def link urscriptKeywords    Keyword
 hi def link urscriptIdentifier  Identifier
 
 hi def link urscriptLabelText   String

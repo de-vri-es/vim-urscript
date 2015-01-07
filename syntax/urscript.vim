@@ -16,7 +16,7 @@ syn keyword urscriptKeywords while if else elif end
 syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 
 " Blocks.
-syn region  urscriptBlock start="^\s*\(\(def\|thread\|while\|if\|elif\).\+:\|elif\s*:\)\s*$" end="end" fold
+syn region  urscriptBlock start="^\s*\(\(def\|thread\|while\|if\|elif\).\+:\|elif\s*:\)\s*$" end="end" fold contains=TOP
 
 " Program labels.
 syn region urscriptLabelText      start="\"" skip="\\" end="\""  contained

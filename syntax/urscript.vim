@@ -34,20 +34,20 @@ syn region  urscriptString start="\"" skip="\\" end="\""
 syn keyword urscriptBool True False
 
 " Integer with - + or nothing in front.
-syn match urscriptNumber '\d\+'
-syn match urscriptNumber '[-+]\d\+'
+syn match urscriptNumber '\<\d\+'
+syn match urscriptNumber '\<[-+]\d\+'
 
 " Floating point number with decimal no E or e (+,-).
-syn match urscriptNumber '\d\+\.\d*'
-syn match urscriptNumber '[-+]\d\+\.\d*'
+syn match urscriptNumber '\<\d\+\.\d*'
+syn match urscriptNumber '\<[-+]\d\+\.\d*'
 
 " Floating point like number with E and no decimal point (+,-).
-syn match urscriptNumber '[-+]\=\d[[:digit:]]*[eE][\-+]\=\d\+'
-syn match urscriptNumber '\d[[:digit:]]*[eE][\-+]\=\d\+'
+syn match urscriptNumber '\<[-+]\=\d[[:digit:]]*[eE][\-+]\=\d\+'
+syn match urscriptNumber '\<\d[[:digit:]]*[eE][\-+]\=\d\+'
 
 " Floating point like number with E and decimal point (+,-).
-syn match urscriptNumber '[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
-syn match urscriptNumber '\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
+syn match urscriptNumber '\<[-+]\=\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
+syn match urscriptNumber '\<\d[[:digit:]]*\.\d*[eE][\-+]\=\d\+'
 
 " Erronous semicolon at the end of a line.
 syn match urscriptSemicolonError ";\s*$"

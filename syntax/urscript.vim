@@ -24,7 +24,10 @@ if exists("b:current_syntax")
 endif
 
 " Comment
-syn match urscriptComments "^\s*#.*"
+syn match urscriptComments "^\s*#.*" contains=urscriptTodo
+
+" Todo
+syn keyword urscriptTodo TODO contained
 
 " Identifiers.
 syn match urscriptIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
@@ -71,6 +74,7 @@ syn match urscriptSemicolonError ";\s*$"
 
 " Link urscript groups to default groups.
 hi def link urscriptComments    Comment
+hi def link urscriptTodo        Todo
 hi def link urscriptKeywords    Keyword
 hi def link urscriptOperators   Operator
 hi def link urscriptIdentifier  Identifier

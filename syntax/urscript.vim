@@ -24,7 +24,7 @@ if exists("b:current_syntax")
 endif
 
 " Comment
-syn match urscriptComments "^\s*#.*" contains=urscriptTodo
+syn match urscriptComments "#.*" contains=urscriptTodo
 
 " Todo
 syn keyword urscriptTodo TODO contained

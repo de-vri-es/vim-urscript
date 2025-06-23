@@ -39,18 +39,13 @@ function GetURScriptIndent(lnum)
 	while prev_lnum >= a:lnum - 50 && prev_lnum >= 0
 		let prev_lnum = prevnonblank(prev_lnum - 1)
 		let prev_line = getline(prev_lnum)
-		if prev_line !~ '^\$'
+		if prev_line !~ '^\s*\$'
 			break
 		endif
 	endwhile
 
 	let prev_indent = indent(prev_lnum)
 	let line        = getline(a:lnum)
-
-	" Program labels may not be indented.
-	if line =~ '^\s*\$'
-		return 0
-	endif
 
 	" If this is the first line, use 0 indent.
 	if prev_lnum == 0
@@ -60,13 +55,13 @@ function GetURScriptIndent(lnum)
 	" Extra indent to add.
 	let add_indent = 0
 
-	" Indent after lines ending in colon.
-	if prev_line =~ ':\s*$'
+	" Indent after lines ending in colon or containing 'enter_critical' keyword
+	if prev_line =~ '^[^#]*:\s*\%(#.*\)\?$' || prev_line =~ '^\s*enter_critical\>'
 		let add_indent = add_indent + shiftwidth()
 	endif
 
-	" Unindent elif/else/end.
-	if line =~ '^\s*\(elif\|else\|end\)\>'
+	" Unindent elif/else/end/exit_critical.
+	if line =~ '^\s*\(elif\|else\|end\|exit_critical\)\>'
 		let add_indent = add_indent - shiftwidth()
 	endif
 

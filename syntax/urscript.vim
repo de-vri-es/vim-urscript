@@ -33,8 +33,8 @@ syn keyword urscriptTodo TODO contained
 syn match urscriptIdentifier "\<[a-zA-Z_][a-zA-Z0-9_]*\>" contained
 
 " Keywords.
-syn keyword urscriptKeywords thread run join kill return halt break continue
-syn keyword urscriptKeywords while if else elif end
+syn keyword urscriptKeywords thread run join kill return pause halt break continue
+syn keyword urscriptKeywords while if else elif end enter_critical exit_critical
 syn keyword urscriptKeywords local global
 syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 
@@ -42,10 +42,19 @@ syn keyword urscriptKeywords def thread nextgroup=urscriptIdentifier skipwhite
 syn keyword urscriptOperators or and xor not
 
 " Program labels.
-syn region urscriptLabelText      start="\"" skip="\\" end="\""  contained
+syn region urscriptLabelProperty  start="\"" skip="\\" end="\""  contained
+syn region urscriptLabelText      start="\"" skip="\\" end="\""  contained nextgroup=urscriptLabelProperty skipwhite
 syn match  urscriptLabelNumber     "\d\+"     contained nextgroup=urscriptLabelText skipwhite
-syn match  urscriptLabel           "^[$]"     nextgroup=urscriptLabelNumber skipwhite
-syn match  urscriptLabelError      "^\s\+[$]" nextgroup=urscriptLabelNumber skipwhite
+syn match  urscriptLabel           "^\s*[$]"  nextgroup=urscriptLabelNumber skipwhite
+
+" Structure definition.
+syn keyword urscriptStruct struct
+
+" Pose definition.
+syn match urscriptPose "\<p\ze\["
+
+" Literal None value.
+syn keyword urscriptNone None
 
 " Strings.
 syn region  urscriptString start="\"" skip="\\" end="\""
@@ -80,11 +89,14 @@ hi def link urscriptKeywords    Keyword
 hi def link urscriptOperators   Operator
 hi def link urscriptIdentifier  Identifier
 
-hi def link urscriptLabelText   String
-hi def link urscriptLabelNumber Number
-hi def link urscriptLabel       PreProc
-hi def link urscriptLabelError  Error
+hi def link urscriptLabelProperty PreProc
+hi def link urscriptLabelText     PreProc
+hi def link urscriptLabelNumber   PreProc
+hi def link urscriptLabel         PreProc
 
+hi def link urscriptStruct      Structure
+hi def link urscriptPose        Structure
+hi def link urscriptNone        Constant
 hi def link urscriptString      String
 hi def link urscriptBool        Constant
 hi def link urscriptNumber      Number
